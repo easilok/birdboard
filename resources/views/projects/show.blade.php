@@ -2,13 +2,13 @@
 
 @section('content')
     <header class="flex items-center mb-6 pb-4">
-        <div class="flex justify-between items-end w-full">
+        <div class="sm:flex justify-between items-end w-full">
             <p class="text-muted font-light">
                 <a href="/projects" class="text-muted no-underline hover:underline">My Projects</a>
                 / {{ $project->title }}
             </p>
 
-            <div class="flex items-center">
+            <div class="flex items-center mt-6 sm:mt-0">
                 @foreach ($project->members as $member)
                     <img
                         src="{{ gravatar_url($member->email) }}"
