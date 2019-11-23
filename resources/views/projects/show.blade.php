@@ -33,7 +33,7 @@
                     <h2 class="text-lg text-muted font-light mb-3">Tasks</h2>
 
                     {{-- tasks --}}
-                    @foreach ($project->tasks as $task)
+                    @foreach ($tasks as $task)
                         <div class="card mb-3">
                             <form method="POST" action="{{ $task->path() }}">
                                 @method('PATCH')

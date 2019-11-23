@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -26,11 +27,19 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Project $project)
+    public function show(Project $project, Request $request)
     {
         $this->authorize('update', $project);
 
-        return view('projects.show', compact('project'));
+				$showAll = $request->has('showall');
+
+				if ($showAll) {
+					$tasks = $project->alltasks;
+				} else {
+					$tasks = $project->tasks;
+				}
+
+        return view('projects.show', compact(['project', 'tasks']));
     }
 
     /**

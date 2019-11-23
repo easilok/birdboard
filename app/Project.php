@@ -40,9 +40,19 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function alltasks()
+    {
+        return $this->hasMany(Task::class)->orderBy('completed');
+    }
+
+    /**
+     * The incomplete tasks associated with the project.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class)->where('completed', false);
     }
 
     /**
